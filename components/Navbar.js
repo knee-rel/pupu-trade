@@ -1,16 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
   const isActive = (r) => {
-    if(r === router.pathname) {
-      return 'active'
+    if (r === router.pathname) {
+      return "active";
     } else {
-      return ''
+      return "";
     }
-  }
+  };
   const category = [
     { link: "food", menuName: "Food" },
     { link: "fashion", menuName: "Fashion" },
@@ -38,25 +38,25 @@ const Navbar = () => {
         <ul className="navbar-nav">
           <li className="nav-item active">
             <Link href="/">
-              <a className={"nav-link" + isActive('/')}>
+              <a className={"nav-link" + isActive("/")}>
                 Home <span className="sr-only">(current)</span>
               </a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/feed">
-              <a className={"nav-link" + isActive('/feed')}>Feed</a>
+              <a className={"nav-link" + isActive("/feed")}>Feed</a>
             </Link>
           </li>
           <li className="nav-item">
             <Link href="/groups">
-              <a className={"nav-link" + isActive('/groups')}>Groups</a>
+              <a className={"nav-link" + isActive("/groups")}>Groups</a>
             </Link>
           </li>
           <li className="nav-item dropdown">
             <Link href="#">
               <a
-                className={"nav-link dropdown-toggle" + isActive('/categories')}
+                className={"nav-link dropdown-toggle" + isActive("/categories")}
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-toggle="dropdown"
@@ -92,13 +92,20 @@ const Navbar = () => {
         >
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link href="/login">
-                <a className={"nav-link" + isActive('/login')}>Login</a>
+              <Link href="/cart">
+                <a className={"nav-link" + isActive("/cart")}>
+                  <i class="fas fa-shopping-cart"></i>Cart
+                </a>
               </Link>
             </li>
             <li className="nav-item">
-              <Link href= '/signup'>
-                <a className={"nav-link" + isActive('/signup')}>Sign Up</a>
+              <Link href="/login">
+                <a className={"nav-link" + isActive("/login")}>Login</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/signup">
+                <a className={"nav-link" + isActive("/signup")}>Sign Up</a>
               </Link>
             </li>
           </ul>

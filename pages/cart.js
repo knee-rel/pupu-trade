@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 
-const GroupsPage = () => {
+const Cart = () => {
   return (
     <div>
       <Head>
@@ -18,10 +18,11 @@ const GroupsPage = () => {
       </Head>
       <div>
         <Navbar />
+        Cart
       </div>
       <div className="p-5"></div>
     </div>
   );
 };
 
-export default GroupsPage;
+export default Cart
