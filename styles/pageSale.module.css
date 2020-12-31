@@ -1,0 +1,6 @@
+.shoe {
+    height: 100vh;
+    position: relative;
+    background-size: cover;
+    background-image: url('../public/main_shoe.jpg')
+}
