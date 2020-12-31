@@ -54,7 +54,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item dropdown">
-            <Link href="#">
+            <Link href="/">
               <a
                 className={"nav-link dropdown-toggle" + isActive("/categories")}
                 id="navbarDropdownMenuLink"
@@ -79,7 +79,7 @@ const Navbar = () => {
                       query: { cat: value.menuName },
                     }}
                   >
-                    <a className="dropdown-item">{value.menuName}</a>
+                    <a className="dropdown-item" key={value}>{value.menuName}</a>
                   </Link>
                 );
               })}
@@ -94,7 +94,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link href="/cart">
                 <a className={"nav-link" + isActive("/cart")}>
-                  <i class="fas fa-shopping-cart"></i>Cart
+                  <i className="fas fa-shopping-cart"></i>Cart
                 </a>
               </Link>
             </li>
