@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -11,6 +11,7 @@ const Navbar = () => {
       return "";
     }
   };
+
   const category = [
     { link: "food", menuName: "Food" },
     { link: "fashion", menuName: "Fashion" },
@@ -73,14 +74,16 @@ const Navbar = () => {
             >
               {category.map((value, key) => {
                 return (
-                  <Link
-                    href={{
-                      pathname: `/categories/${value.link}`,
-                      query: { cat: value.menuName },
-                    }}
-                  >
-                    <a className="dropdown-item" key={value}>{value.menuName}</a>
-                  </Link>
+                  <div key={key}>
+                    <Link
+                      href={{
+                        pathname: `/categories/${value.link}`,
+                        query: { cat: value.menuName },
+                      }}
+                    >
+                      <a className="dropdown-item">{value.menuName}</a>
+                    </Link>
+                  </div>
                 );
               })}
             </div>
@@ -116,3 +119,18 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+{
+  /* <div>
+        <li className="nav-item">
+          <Link href="/login">
+            <a className={"nav-link" + isActive("/login")}>Login</a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="/signup">
+            <a className={"nav-link" + isActive("/signup")}>Sign Up</a>
+          </Link>
+        </li>
+      </div> */
+}

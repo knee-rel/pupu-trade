@@ -1,10 +1,10 @@
 const Loading = () => {
   return (
-    <h2>Loading...</h2>
+    <h2>Loading</h2>
   );
 };
 
-export default Loading
+export default Loading;
 
 {/* <div
       className="position-fixed w-100 h-100 text-center loading"
@@ -16,8 +16,13 @@ export default Loading
         zIndex: 9,
       }}
     >
-        <svg width='205' height='250' viewBox='0, 0, 40, 50'>
-            <polygon strokeWidth='1' stroke='#fff' fill='none' points='20,1,40,40,1,40'></polygon>
-            <text fill='#fff' x='5' y='47'></text>
-        </svg>
+      <svg width="205" height="250" viewBox="0 0 40 50">
+        <polygon
+          strokeWidth="1"
+          stroke="#fff"
+          fill="none"
+          points="20,1,40,40,1,40"
+        ></polygon>
+        <text fill="#fff" x="5" y="47">Loading</text>
+      </svg>
     </div> */}
