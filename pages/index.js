@@ -8,6 +8,7 @@ import MainPolicy from "../components/MainPolicy";
 import FeatureImg from "../components/FeatureImg";
 import Search from "../components/Search";
 import BestSeller from '../components/BestSeller'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -45,6 +46,9 @@ const Home = () => {
       <div className="p-5">
         <Search />
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

@@ -55,7 +55,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item dropdown">
-            <Link href="/">
+            <Link href="/shop">
               <a
                 className={"nav-link dropdown-toggle" + isActive("/categories")}
                 id="navbarDropdownMenuLink"
@@ -64,7 +64,7 @@ const Navbar = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Categories
+                Shop
               </a>
             </Link>
 
