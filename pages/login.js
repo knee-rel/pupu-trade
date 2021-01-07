@@ -1,8 +1,55 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
-import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import React, { useState, useContext } from "react";
+import { DataContext } from "../store/GlobalState";
+import Toast from "../components/Toast";
+import Notify from "../components/Notify";
+import { postData } from "../utils/fetchData";
+import Loading from "../components/Loading";
+import Cookie from "js-cookie";
 
 const LoginPage = () => {
+  const initalState = {
+    email: "",
+    password: "",
+  };
+  const [userData, setUserData] = useState(initalState);
+  const { email, password } = userData;
+
+  const [state, dispatch] = useContext(DataContext);
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
+
+    const res = await postData("auth/login", userData);
+    if (res.err)
+      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+
+    dispatch({
+      type: "AUTH",
+      payload: {
+        token: res.access_token,
+        user: res.user,
+      },
+    });
+
+    Cookie.set("refreshtoken", res.refresh_token, {
+      path: "api/auth/accessToken",
+      expires: 7,
+    });
+
+    localStorage.setItem("firstLogin", true);
+  };
   return (
     <div>
       <Head>
@@ -19,44 +66,49 @@ const LoginPage = () => {
       </Head>
       <div>
         <Navbar />
+        <Notify />
       </div>
-      <div className = 'p-5'>
-        <form className = 'p-5'>
+      <div className="p-5">
+        <form
+          className="p-5 align-self-center justify-content-center"
+          style={{ maxWidth: "600px" }}
+          onSubmit={handleSubmit}
+        >
           <div className="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label htmlFor="exampleInputEmail1">Email address</label>
             <input
               type="email"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              name="email"
+              value={email}
+              onChange={handleChangeInput}
             />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label htmlFor="exampleInputPassword1">Password</label>
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="exampleInputPassword"
+              name="password"
+              value={password}
+              onChange={handleChangeInput}
             />
           </div>
-          <div className="form-group form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" for="exampleCheck1">
-              Check me out
-            </label>
-          </div>
+          <p className="my-2">
+            Don't have an account yet?
+            <Link href="/signup">
+              <a style={{ color: "blue" }}> Login Here</a>
+            </Link>
+          </p>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
       </div>
+      <Toast />
     </div>
   );
 };

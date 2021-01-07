@@ -25,7 +25,7 @@ const SignUpPage = () => {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    dispatch({ type: "NOTIFY", payload: {} });
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
   };
 
   const handleSubmit = async (e) => {
@@ -58,7 +58,7 @@ const SignUpPage = () => {
       <div>
         <Navbar />
         <Notify />
-        <Loading />
+        {/* <Loading /> */}
       </div>
       <div className="p-5 ">
         <form
